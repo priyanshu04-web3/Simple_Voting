@@ -1,83 +1,58 @@
-# Simple Voting System Smart Contract
+Simple Voting System Smart Contract
 
-## Overview
-This project is a beginner-level Solidity smart contract developed as part of a blockchain learning assignment.  
-The contract implements a simple and transparent voting system between two candidates, ensuring fairness and security.
+This is a beginner-level Solidity smart contract created while learning blockchain development.
+It represents a simple voting system where people can vote for one of two candidates in a fair and transparent way.
 
-Each wallet address is allowed to vote only once, and the voting process can be controlled by an administrator.
+Each wallet address is allowed to vote only once, and the person who deploys the contract (admin) can start or stop the voting process.
 
----
+What this contract does
 
-## Objectives
-- Enable users to vote for one of two candidates
-- Prevent double voting by the same wallet address
-- Allow the administrator to turn voting ON or OFF
-- Provide transparent vote counting
+Lets users vote for Candidate 1 or Candidate 2
 
----
+Ensures one vote per wallet
 
-## Features
-- Two candidates (Candidate 1 and Candidate 2)
-- One vote per wallet address
-- Voting status control (ON / OFF)
-- Admin-only control for enabling or disabling voting
-- Public visibility of vote counts
+Prevents double voting
 
----
+Allows the admin to turn voting ON or OFF
 
-## Voting Logic
-- Users cast their vote by calling the `vote(uint candidateId)` function
-- Valid candidate IDs are:
-  - `1` → Candidate 1
-  - `2` → Candidate 2
-- A mapping is used to track whether an address has already voted
-- If a user attempts to vote more than once, the transaction fails
+Shows live vote counts publicly
 
----
+How voting works
 
-## Voting Status Control (Bonus Requirement)
-A boolean variable is used to control the voting status:
-- `true` → Voting is ON
-- `false` → Voting is OFF
+A user calls the vote() function and chooses a candidate
 
-Only the administrator (contract deployer) can change the voting status using the `toggleVotingStatus(bool status)` function.
+Only two options are allowed:
 
-The `vote` function works only when voting is ON.
+1 for Candidate 1
 
----
+2 for Candidate 2
 
-## Smart Contract Functions
+Once a user votes, they cannot vote again
 
-### `vote(uint candidateId)`
-Allows a user to vote for Candidate 1 or Candidate 2.  
-The function fails if:
-- Voting is OFF
-- The user has already voted
-- An invalid candidate ID is provided
+If voting is turned OFF, no one can vote
 
----
+Admin control
 
-### `getVotes()`
-Returns the total vote count for both candidates.
+The admin is the wallet that deploys the contract
 
----
+Only the admin can enable or disable voting
 
-### `toggleVotingStatus(bool status)`
-Allows only the administrator to turn voting ON or OFF.
+This helps control when voting starts and ends
 
----
+Main functions
 
-## Admin Logic
-The administrator is set at the time of contract deployment using `msg.sender` in the constructor.  
-Only the admin wallet can control the voting status.
+vote(uint candidateId) – Cast a vote for a candidate
 
----
+getVotes() – View total votes for both candidates
 
-## Tools Used
-- Solidity ^0.8.0
-- Remix Ethereum IDE
+toggleVotingStatus(bool status) – Admin can turn voting ON or OFF
 
----
+Tools used
 
-## Author
+Solidity ^0.8.0
+
+Remix Ethereum IDE
+
+Author
+
 Priyanshu
